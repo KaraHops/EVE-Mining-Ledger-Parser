@@ -3,6 +3,7 @@ function parseLedger() {
     var outbox = document.getElementById("output");
     var lines = inbox.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
     var final = new Map();
+    outbox.innerHTML = "";
     for (line in lines){
         if (lines[line].startsWith("Timestamp")) { continue; }
         var outarr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
