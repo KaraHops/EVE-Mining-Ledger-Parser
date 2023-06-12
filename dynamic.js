@@ -14,7 +14,7 @@ function parseLedger() {
         
         minerals = ores.get(ore);
         for (var i=0; i < outarr.length; i++) {
-            outarr[i] += Math.floor(minerals[i+1] * quant / minerals[0]);
+            outarr[i] += Math.floor(minerals[i+2] * quant / minerals[0]);
         }
 
         if (final.has(pilot)){
@@ -28,7 +28,7 @@ function parseLedger() {
         }
     }
     for (var i of final.entries()){
-        outstring = "<span class=\"output\"><span class=\"character\">" + i[0] + ": \r\n</span><hr><span class=\"minerals\">";
+        outstring = "<span class=\"output\"><span class=\"character\">" + i[0] + "</span><hr><span class=\"minerals\">";
         for (x in i[1]) {
             if (i[1][x] == 0) { continue; }
             outstring += indexes[x] + " " + i[1][x] + "\r\n";
@@ -37,3 +37,25 @@ function parseLedger() {
         outbox.innerHTML += outstring;
     }
 }
+
+
+function openTab(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+  
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+  
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+  
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
