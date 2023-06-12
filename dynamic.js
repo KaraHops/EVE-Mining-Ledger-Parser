@@ -28,12 +28,12 @@ function parseLedger() {
         }
     }
     for (var i of final.entries()){
-        outstring = "<span class=\"output\">" + i[0] + ": \r\n";
+        outstring = "<span class=\"output\"><span class=\"character\">" + i[0] + ": \r\n</span><hr><span class=\"minerals\">";
         for (x in i[1]) {
             if (i[1][x] == 0) { continue; }
             outstring += indexes[x] + " " + i[1][x] + "\r\n";
         }
-        outstring += "</span>"
+        outstring += "</span></span>"
         outbox.innerHTML += outstring;
     }
 }

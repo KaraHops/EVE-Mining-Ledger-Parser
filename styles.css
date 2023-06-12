@@ -1,6 +1,10 @@
 body {
     background-color:rgb(17, 17, 17);
-    padding: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    overflow-y: hidden;
 }
 
 textarea {
@@ -11,7 +15,9 @@ textarea {
 }
 
 .output {
-    width: 12%;
+    width: fit-content;
+    margin-left: 10px;
+    margin-right: 10px;
     white-space: pre;
     color:aliceblue;
     display:inline-block;
@@ -24,7 +30,17 @@ textarea {
     overflow-y: hidden;
     padding-top: 20px;
     width:fit-content;
+    min-width: 100%;
     height: fit-content;
     min-height: 50%;
     white-space:nowrap;
+}
+
+.character {
+    width: 100%;
+}
+
+.minerals {
+    width: 100%;
+    user-select: all;
 }
