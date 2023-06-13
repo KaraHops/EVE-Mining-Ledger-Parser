@@ -20,7 +20,7 @@
                 <span class="selector">
                     <label for="reprocessing">Reprocessing</label>
                     <br>
-                    <select name="reprocessing" id="reprocessing">
+                    <select name="reprocessing" id="reprocessing" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -31,7 +31,7 @@
                 <span class="selector">
                     <label for="efficiency">Reprocessing Efficiency</label>
                     <br>
-                    <select name="efficiency" id="efficiency">
+                    <select name="efficiency" id="efficiency" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -45,7 +45,7 @@
                 <span class="selector">
                     <label for="simple">Simple Ore Processing</label>
                     <br>
-                    <select name="simple" id="simple">
+                    <select name="simple" id="simple" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -56,7 +56,7 @@
                 <span class="selector">
                 <label for="coherent">Coherent Ore Processing</label>
                 <br>
-                <select name="coherent" id="coherent">
+                <select name="coherent" id="coherent" onchange="parseLedger()">
                     <option value="5">V</option>
                     <option value="4">IV</option>
                     <option value="3">III</option>
@@ -67,7 +67,7 @@
                 <span class="selector">
                     <label for="variegated">Variegated Ore Processing</label>
                     <br>
-                    <select name="variegated" id="variegated">
+                    <select name="variegated" id="variegated" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -78,7 +78,7 @@
                 <span class="selector">
                     <label for="complex">Complex Ore Processing</label>
                     <br>
-                    <select name="complex" id="complex">
+                    <select name="complex" id="complex" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -89,7 +89,7 @@
                 <span class="selector">
                     <label for="mercoxit">Mercoxit Ore Processing</label>
                     <br>
-                    <select name="mercoxit" id="mercoxit">
+                    <select name="mercoxit" id="mercoxit" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -100,7 +100,7 @@
                 <span class="selector">
                     <label for="abyssal">Abyssal Ore Processing</label>
                     <br>
-                    <select name="abyssal" id="abyssal">
+                    <select name="abyssal" id="abyssal" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -114,7 +114,7 @@
                 <span class="selector">
                     <label for="ubiquitous">Ubiquitous Moon Ore Processing</label>
                     <br>
-                    <select name="ubiquitous" id="ubiquitous">
+                    <select name="ubiquitous" id="ubiquitous" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -125,7 +125,7 @@
                 <span class="selector">
                     <label for="common">Common Moon Ore Processing</label>
                     <br>
-                    <select name="common" id="common">
+                    <select name="common" id="common" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -136,7 +136,7 @@
                 <span class="selector">
                     <label for="uncommon">Uncommon Moon Ore Processing</label>
                     <br>
-                    <select name="uncommon" id="uncommon">
+                    <select name="uncommon" id="uncommon" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -147,7 +147,7 @@
                 <span class="selector">
                     <label for="rare">Rare Moon Ore Processing</label>
                     <br>
-                    <select name="rare" id="rare">
+                    <select name="rare" id="rare" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -158,7 +158,7 @@
                 <span class="selector">
                     <label for="exceptional">Exceptional Moon Ore Processing</label>
                     <br>
-                    <select name="exceptional" id="exceptional">
+                    <select name="exceptional" id="exceptional" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -172,7 +172,7 @@
                 <span class="selector">
                     <label for="ice">Ice Processing</label>
                     <br>
-                    <select name="ice" id="ice">
+                    <select name="ice" id="ice" onchange="parseLedger()">
                         <option value="5">V</option>
                         <option value="4">IV</option>
                         <option value="3">III</option>
@@ -186,7 +186,7 @@
                 <span class="selector">
                     <label for="security">Security Status</label>
                     <br>
-                    <select name="security" id="security">
+                    <select name="security" id="security" onchange="parseLedger()">
                         <option value="1.12">Null Security</option>
                         <option value="1.06">Low Security</option>
                         <option value="1">High Security</option>
@@ -195,7 +195,7 @@
                 <span class="selector">
                     <label for="structure">Structure</label>
                     <br>
-                    <select name="structure" id="structure">
+                    <select name="structure" id="structure" onchange="parseLedger()">
                         <option value="1.055">Tatara</option>
                         <option value="1.02">Athanor</option>
                         <option value="1">Other</option>
@@ -204,7 +204,7 @@
                 <span class="selector">
                     <label for="rig">Rigs</label>
                     <br>
-                    <select name="rig" id="rig">
+                    <select name="rig" id="rig" onchange="parseLedger()">
                         <option value="0.03">T2</option>
                         <option value="0.01">T1</option>
                         <option value="0">None</option>
@@ -213,7 +213,7 @@
                 <span class="selector">
                     <label for="implant">Implant</label>
                     <br>
-                    <select name="implant" id="implant">
+                    <select name="implant" id="implant" onchange="parseLedger()">
                         <option value="1.04">RX-804</option>
                         <option value="1.02">RX-802</option>
                         <option value="1.01">RX-801</option>
