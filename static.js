@@ -1,5 +1,9 @@
 const indexes = new Array("Tritanium","Pyerite","Mexallon","Isogen","Nocxium","Zydrine","Megacyte","Morphite","Heavy Water","Liquid Ozone","Strontium","Oxygen Isotopes","Helium Isotopes","Hydrogen Isotopes","Nitrogen Isotopes","Hydrocarbons","Silicates","Evaporite Deposits","Atmospheric Gases","Scandium","Titanium","Tungsten","Cobalt","Platinum","Chromium","Vanadium","Cadmium","Hafnium","Technetium","Mercury","Caesium","Promethium","Neodymium","Dysprosium","Thulium");
 
+//Certainly not the correct way to do this, but hey, it works.
+//Just a table of all the ores' relevant values.
+//First two values are amount to refine and the type of ore for skill calculations.
+//Remaining values are the mineral values of each ore, in the order of the "indexes" constant above.
 const ores = new Map([
  ["Ytirium",new Array(100,"coherent",0,0,0,240,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)],
  ["Bootleg Ytirium",new Array(100,"coherent",0,0,0,252,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0)],
