@@ -4,3 +4,5 @@ A parsing tool for the EVE Online mining ledger to calculate refined outputs on 
 The majority of the features of this tool can be used in Github Pages, here: https://karahops.github.io/EVE-Mining-Ledger-Parser/
 
 In order to make use of the evepraisal integration, it is necessary to deploy your own copy of the code on a webserver running PHP. 
+
+If this project saved you some time and you'd like to say thanks, send isk to the ingame character Kara Hops. :)
