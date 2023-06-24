@@ -13,6 +13,7 @@ async function parseLedger(appraise) {
     const effmod = (document.getElementById("efficiency").value * 0.02) + 1;
     const impmod = document.getElementById("implant").value;
     const basicmods = baseval * secmod * strucmod * reprmod * effmod * impmod;
+    const buyback = document.getElementById("percentage").value / 100;
     console.log("baseval: " + baseval + ", secmod: " + secmod + ", strucmod: " + strucmod + ", reprmod: " + reprmod + ", effmod: " + effmod + ", impmod: " + impmod + ", final basicmods: " + basicmods);
 
     for (line in lines){
@@ -60,7 +61,7 @@ async function parseLedger(appraise) {
         if (appraise) {
             value = await calculateTotalValue(i[1]);
             console.log("Value for character ")
-            outstring += "<hr><span class=\"value\">Value: " + value + " isk</span>";
+            outstring += "<hr><span class=\"value\">" + Math.floor(parseFloat(value) * buyback) + " isk</span>";
         }
         outstring +="</span>";
         outbox.innerHTML += outstring;
