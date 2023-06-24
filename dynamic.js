@@ -1,18 +1,18 @@
-function parseLedger() {
-    var inbox = document.getElementById("input");
-    var outbox = document.getElementById("output");
-    var lines = inbox.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
+async function parseLedger(appraise) {
+    const inbox = document.getElementById("input");
+    const outbox = document.getElementById("output");
+    const lines = inbox.value.replace(/\r\n/g,"\n").split("\n").filter(line => line);
     var outmap = new Map();
     outbox.innerHTML = "";
 
     //Collect modifiers
-    var baseval = 0.5 + parseFloat(document.getElementById("rig").value);
-    var secmod = document.getElementById("security").value;
-    var strucmod = document.getElementById("structure").value;
-    var reprmod = (document.getElementById("reprocessing").value * 0.03) + 1;
-    var effmod = (document.getElementById("efficiency").value * 0.02) + 1;
-    var impmod = document.getElementById("implant").value;
-    var basicmods = baseval * secmod * strucmod * reprmod * effmod * impmod;
+    const baseval = 0.5 + parseFloat(document.getElementById("rig").value);
+    const secmod = document.getElementById("security").value;
+    const strucmod = document.getElementById("structure").value;
+    const reprmod = (document.getElementById("reprocessing").value * 0.03) + 1;
+    const effmod = (document.getElementById("efficiency").value * 0.02) + 1;
+    const impmod = document.getElementById("implant").value;
+    const basicmods = baseval * secmod * strucmod * reprmod * effmod * impmod;
     console.log("baseval: " + baseval + ", secmod: " + secmod + ", strucmod: " + strucmod + ", reprmod: " + reprmod + ", effmod: " + effmod + ", impmod: " + impmod + ", final basicmods: " + basicmods);
 
     for (line in lines){
@@ -30,7 +30,7 @@ function parseLedger() {
         
         //Find which minerals are found in the particular ore being worked on and apply the appropriate multipliers.
         minerals = ores.get(ore);
-        var oremod = (document.getElementById(minerals[1]).value * 0.02) + 1;
+        const oremod = (document.getElementById(minerals[1]).value * 0.02) + 1;
         for (var i=0; i < outarr.length; i++) {
             refinedvalue = Math.floor((minerals[i+2] * quant / minerals[0]) * basicmods * oremod);
             outarr[i] += refinedvalue;
@@ -56,10 +56,43 @@ function parseLedger() {
             if (i[1][x] == 0) { continue; }
             outstring += indexes[x] + " " + i[1][x] + "\r\n";
         }
-        outstring += "</span></span>"
+        outstring += "</span>"
+        if (appraise) {
+            value = await calculateTotalValue(i[1]);
+            console.log("Value for character ")
+            outstring += "<hr><span class=\"value\">Value: " + value + " isk</span>";
+        }
+        outstring +="</span>";
         outbox.innerHTML += outstring;
     }
 }
+
+async function calculateTotalValue(items) {
+    const url = window.location.origin + window.location.pathname + 'appraisal.php';
+
+    var itemlist = {};
+    for (var i=0; i < items.length; i++) {
+        itemlist[indexes[i]] = items[i];
+    }
+  
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(itemlist)
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to fetch appraisal data.');
+      }
+  
+      const data = await response.json();
+
+      return data.appraisal.totals.buy; // Use 'buy' for the total value
+    } catch (error) {
+      console.error('Error calculating total value:', error);
+      return 0; // Return 0 in case of an error
+    }
+  }
 
 //Code for displaying the tabs for skills/facility input.
 //Thanks, W3Schools!

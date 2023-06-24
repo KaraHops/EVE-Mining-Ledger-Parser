@@ -14,6 +14,7 @@
                 <button class="tablinks" onclick="openTab(event, 'moon')">Moon Skills</button>
                 <button class="tablinks" onclick="openTab(event, 'ice')">Ice Skills</button>
                 <button class="tablinks" onclick="openTab(event, 'facility')">Facility</button>
+                <button class="tablinks" onclick="openTab(event, 'evepraisal')">Evepraisal</button>
             </div>
             <div id="basic" class="tabcontent">
                 <h2>Basic Skills</h2>
@@ -234,6 +235,11 @@
                         <option value="1">None</option>
                     </select>
                 </span>
+            </div>
+            <div id="evepraisal" class="tabcontent">
+                <h2>Evepraisal</h2>
+                <h4>This section will not function if PHP is not enabled, such as in Github Pages.</h4>
+                <button class="selector" onclick="parseLedger(true)">Run Evepraisal</button>
             </div>
             <br>
             <textarea id="input" placeholder="Paste mining ledger here." oninput="parseLedger()"></textarea>
