@@ -5,4 +5,8 @@ The majority of the features of this tool can be used in Github Pages, here: htt
 
 In order to make use of the evepraisal integration, it is necessary to deploy your own copy of the code on a webserver running PHP. 
 
+This tool supports pasting from:
+- Refinery moon mining ledgers
+- Fleet loot history
+
 If this project saved you some time and you'd like to say thanks, send isk to the ingame character Kara Hops. :)
