@@ -15,7 +15,6 @@ async function parseLedger(appraise) {
     const basicmods = baseval * secmod * strucmod * reprmod * effmod * impmod;
     const buyback = document.getElementById("percentage").value / 100;
     const orelist = Array.from(ores.keys());
-    console.log(orelist);
     console.log("baseval: " + baseval + ", secmod: " + secmod + ", strucmod: " + strucmod + ", reprmod: " + reprmod + ", effmod: " + effmod + ", impmod: " + impmod + ", final basicmods: " + basicmods);
     
     //Check whether to process moon mining ledger or loot history for non-moon ores
@@ -24,15 +23,12 @@ async function parseLedger(appraise) {
       for (line in lines){
         var ore = lines[line].split(" x ").slice(-1)[0];
         if (orelist.indexOf(ore) > -1){
-          console.log("Found item in ore index");
           //Declare a silly little array for all the types of minerals (35 of them!)
           var outarr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
           var pilot = lines[line].split(/ has looted \d/)[0].split(" ");
           pilot.shift();
           pilot = pilot.join(" ");
-          console.log("Found pilot " + pilot);
           var quant = lines[line].split(/ has looted /)[1].split(/ x /)[0].replace(",","");
-          console.log("Found quantity " + quant);
           
           //Find which minerals are found in the particular ore being worked on and apply the appropriate multipliers.
           minerals = ores.get(ore);
@@ -56,7 +52,7 @@ async function parseLedger(appraise) {
         }
       }
     } else {
-      console.log("Parsing moon mining ledger...");
+      console.log("Parsing mining ledger...");
       for (line in lines){
         //Skip the header line if present
         if (lines[line].startsWith("Timestamp")) { continue; }
@@ -65,29 +61,43 @@ async function parseLedger(appraise) {
         var outarr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 
         //Collect the pilot's name, the ore they mined, and the amount mined.
-        var arr = lines[line].split("    ");
-        var pilot = arr[2];
-        var ore = arr[3];
-        var quant = arr[4];
+        var arr;
+        if (lines[line].includes("    ")) {
+          arr = lines[line].split("    ");
+        } else {
+          arr = lines[line].split(/\t/);
+        }
+        if (arr.length == 9) {
+          var pilot = arr[2];
+          var ore = arr[3];
+          var quant = arr[4];
+        } else {
+          var pilot = arr[1];
+          var ore = arr[2];
+          var quant = arr[3];
+        }
         
         //Find which minerals are found in the particular ore being worked on and apply the appropriate multipliers.
-        minerals = ores.get(ore);
-        const oremod = (document.getElementById(minerals[1]).value * 0.02) + 1;
-        for (var i=0; i < outarr.length; i++) {
-            refinedvalue = Math.floor((minerals[i+2] * quant / minerals[0]) * basicmods * oremod);
-            outarr[i] += refinedvalue;
-        }
 
-        //If the output map already has this pilot's name in it, add the results of the last calculation to the existing mineral array 
-        if (outmap.has(pilot)){
-            workarr = outmap.get(pilot);
-            for (var i=0; i < outarr.length; i++) {
-                workarr[i] += outarr[i];
-            }
-            outmap.set(pilot, workarr);
-        } else {
-            //Otherwise, add the pilot's name to the map with the new mineral array.
-            outmap.set(pilot, outarr);
+        if (orelist.includes(ore)) {
+          minerals = ores.get(ore);
+          const oremod = (document.getElementById(minerals[1]).value * 0.02) + 1;
+          for (var i=0; i < outarr.length; i++) {
+              refinedvalue = Math.floor((minerals[i+2] * quant / minerals[0]) * basicmods * oremod);
+              outarr[i] += refinedvalue;
+          }
+
+          //If the output map already has this pilot's name in it, add the results of the last calculation to the existing mineral array 
+          if (outmap.has(pilot)){
+              workarr = outmap.get(pilot);
+              for (var i=0; i < outarr.length; i++) {
+                  workarr[i] += outarr[i];
+              }
+              outmap.set(pilot, workarr);
+          } else {
+              //Otherwise, add the pilot's name to the map with the new mineral array.
+              outmap.set(pilot, outarr);
+          }
         }
     }
     }
@@ -102,7 +112,6 @@ async function parseLedger(appraise) {
         outstring += "</span>"
         if (appraise) {
             value = await calculateTotalValue(i[1]);
-            console.log("Value for character ")
             outstring += "<hr><span class=\"value\">" + Math.floor(parseFloat(value) * buyback) + " isk</span>";
         }
         outstring +="</span>";
